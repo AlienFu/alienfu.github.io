@@ -1,5 +1,5 @@
 ---
-next: "end_battle"
+next: "check_from_what_action"
 ---
 
 Remove all NPR Units.

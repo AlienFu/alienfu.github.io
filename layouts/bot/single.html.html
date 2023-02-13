@@ -1,28 +1,41 @@
 {{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <h1 class="f1">
-          {{ .Title }}
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links {{ $.Param "text_color" | default "mid-gray" }}">
-        {{ .Content }}
-      </div>
-      
-      {{if .Params.yes}}
-      <a href="{{relref . (.Param "yes") }}">Yes</a>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <h1 class="f1">
+        {{ .Title |safeHTML}}
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links {{ $.Param " text_color" | default "mid-gray" }}">
+      {{ .Content }}
+    </div>
+    <div class="link-box">
+      {{if .Params.dice_results}}
+      {{range $key, $value := .Params.dice_results}}
+      <a class="button yes" href="{{relref $ $value }}">{{$key}}</a>
       {{end}}
-      
-      {{if .Params.no}}
-      <a href="{{relref . (.Param "no") }}">No</a>
-      {{end}}
-    
-      {{if .Params.next}}
-      <a href="{{relref . (.Param "next") }}">Next</a>
       {{end}}
 
-    </article>
-  </div>
+
+
+
+      {{if .Params.yes}}
+      <a class="button yes" href="{{relref . (.Param "yes") }}">Yes &check;</a>
+      {{end}}
+
+      {{if .Params.no}}
+      <a class="button no" href="{{relref . (.Param "no") }}">No X</a>
+      {{end}}
+
+      {{if .Params.next}}
+      <a class="button next" href="{{relref . (.Param "next") }}">Next &rarr;</a>
+      {{end}}
+    </div>
+    {{if .Params.Invaders}}{{partial "bot/invaders.html" .}} {{end}}
+    {{if .Params.MAC}} {{partial "bot/mac.html" .}} {{end}}
+    {{if .Params.recruit_difficulty_chart}}{{partial "bot/recruit_difficulty_chart.html" .}} {{end}}
+
+  </article>
+</div>
 {{ end }}

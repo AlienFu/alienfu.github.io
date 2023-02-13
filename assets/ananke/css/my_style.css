@@ -1,0 +1,22 @@
+a.button {
+    display: inline-block;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+}
+a.yes {
+    background-color: darkgreen;
+}
+a.button.no {
+    background-color: darkred;
+}
+a.button.next {
+    background-color: lightgray;
+    color: black;
+    border-color: black;
+    border: 1px;
+}
+
+div.link-box {
+    margin-bottom: 15px;
+}
